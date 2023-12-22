@@ -12,6 +12,7 @@ import keyboard
 #自写脚本调用
 
 #键盘事件初始化
+print(1)
 
 def m_KeyPressAction(key):
     match key:
