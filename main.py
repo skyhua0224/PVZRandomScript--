@@ -104,7 +104,7 @@ def ExecuteScript(cycleCount):
 
 print("""
 请输入数字:
-1.启动游戏1
+1.启动游戏
 2.应总选卡
 3.下一局
 """)
