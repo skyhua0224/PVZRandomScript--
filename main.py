@@ -1,11 +1,15 @@
 from ctypes import *
 import pyautogui
 import time
-import pyautogui
 import keyboard
 #自写脚本调用
 from WindowManager import *
 from CommonData import *
+
+from PyQt6.QtWidgets import (
+    QApplication, QDialog, QPushButton, QHBoxLayout, QMessageBox
+)
+import sys
 
 def LaunchGame():
     ##打开游戏
@@ -177,12 +181,16 @@ TopWindow(Game)
         print("已开启阻塞 脚本保持运行")
         keyboard.wait()
 
+
+
+
 def Init():
     print("""
     'Ctrl+1' 启动
     'Ctrl+2' 应总选卡 有等待加载
     'Ctrl+3' 点了个重新开始
-    """)
+    """) 
     KeyboardEvent().KeyboardWait()
+
 
 Init()
