@@ -13,3 +13,5 @@ class Game:
     hwnd = None
     def ClearData():
         hwnd = None
+    gameMode = ["冒险模式","小游戏模式","解密模式","生存模式"]
+

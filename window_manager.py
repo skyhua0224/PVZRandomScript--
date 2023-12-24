@@ -10,6 +10,7 @@ def TopWindow(object):
     if object.hwnd:
         win32gui.ShowWindow(object.hwnd, win32con.SW_SHOWNORMAL)
         print("成功置顶窗口", object.name)
+        time.sleep(0.2)
     else:
         print("无法置顶窗口", object.name)
         exit(1)
@@ -24,7 +25,7 @@ def CloseWindow(object):
         print("无法关闭窗口", object.name)
         exit(1)
 
-#打开程序
+#打开窗口
 def OpenWindow(object):
     try:
         subprocess.Popen(object.path, cwd = os.path.dirname(object.path))
@@ -57,3 +58,10 @@ def CheckWindowIsOpen(object):
         time.sleep( 0.5)
         print("窗口已开启", object.name)
         return True
+    
+#重新打开窗口
+def ReopenWindow(object):
+    if(CheckWindowIsOpen(object)):
+        CloseWindow(object)
+    OpenWindow(object)
+    TopWindow(object)
