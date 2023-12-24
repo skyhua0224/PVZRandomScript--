@@ -6,11 +6,6 @@ import keyboard
 from WindowManager import *
 from CommonData import *
 
-from PyQt6.QtWidgets import (
-    QApplication, QDialog, QPushButton, QHBoxLayout, QMessageBox
-)
-import sys
-
 def LaunchGame():
     ##打开游戏
     if(CheckWindowIsOpen(Game) == False): #没打开程序
@@ -152,9 +147,6 @@ class KeyboardEvent():
         print("已开启阻塞 脚本保持运行")
         keyboard.wait()
 
-
-
-
 def Init():
     print("""
     'Ctrl+1' 启动
@@ -162,6 +154,5 @@ def Init():
     'Ctrl+3' 点了个重新开始
     """) 
     KeyboardEvent().KeyboardWait()
-
 
 Init()
