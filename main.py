@@ -1,3 +1,6 @@
+from ctypes import *
+import pyautogui
+import time
 import keyboard
 #自写脚本调用
 from game_operations import *
@@ -53,7 +56,6 @@ def Init():
     'Ctrl+2' 应总选卡 有等待加载
     'Ctrl+3' 点了个重新开始
     """) 
-    KeyboardEvent()
-    interactive_menu.main()
     KeyboardEvent().KeyboardWait()
+
 Init()
