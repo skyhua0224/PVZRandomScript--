@@ -13,7 +13,7 @@ def print_title():
     console.print(align_title, style="bold cyan")
 
 def print_options():
-    options = ["功能1", "功能2", "功能3", "退出脚本"]
+    options = ["默认开始","选择关卡", "选择植物卡组", "全自定义游戏", "退出脚本"]
     for i, option in enumerate(options):
         console.print(f"{i+1}. {option}")
 
@@ -25,14 +25,17 @@ def main():
         user_input = Prompt.ask("请选择功能：", choices=["1", "2", "3", "4", "0"], default="1")
 
         if user_input == '1':
-            # 执行功能1
+            # 执行现有默认开始
             pass
         elif user_input == '2':
-            # 执行功能2
+            # 执行选择关卡
             pass
         elif user_input == '3':
-            # 执行功能3
+            # 执行选择植物卡组
             pass
-        elif user_input == '0' or user_input == '4':
+        elif user_input == '4':
+            # 执行选择植物卡组
+            pass 
+        elif user_input == '0':
             # 退出脚本
             break
