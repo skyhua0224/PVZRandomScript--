@@ -10,7 +10,6 @@ from keyboard_event import *
 
 console = Console()
 
-
 isStart = False
 
 mode_dict = {
@@ -33,7 +32,6 @@ plant_dict = {
 }
 
 # 添加一个全局变量
-global return_to_menu
 return_to_menu = False
 
 def print_title(title):

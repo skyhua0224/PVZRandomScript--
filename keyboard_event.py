@@ -1,53 +1,37 @@
 import keyboard
-#自写脚本调用
+import threading
 from game_operations import *
 import interactive_menu
-import threading
-class KeyboardEvent(): 
-    def __init__(self):
-        self.KeyPress()
 
-    def KeyPress(self):
-        #从data中获取快捷键
-        KeyPressActions = {'Ctrl+1','Ctrl+2','Ctrl+3','Ctrl+4','Ctrl+5','Ctrl+6','Ctrl+7','Ctrl+8','Ctrl+9', 'Ctrl+0'}
-        for item in KeyPressActions:
-            keyboard.add_hotkey(item, self.KeyPressAction, args=(item,))
-    #案件对应效果
-    def KeyPressAction(self,key):
-        match key:
-            case 'Ctrl+1':
-                #重启游戏..加载=>进入生存模式=>选择白天困难..加载=>选卡=>打开Tool=>脚本运行
-                LaunchGame()
-                SelectGameMode("生存模式")
-                SelectLevel()#自带等待加载
-                SelectPlants()
-                ReopenWindow(Tool)
-                ExecuteScript(4)
-                CloseWindow(Tool)
-                TopWindow(Game)
-            case 'Ctrl+2':
-                #等待=>选卡=>脚本运行
-                if(CheckWindowIsOpen(Game) == False):
-                    return
-                else:
-                    #游戏置顶
-                    TopWindow(Game)
-                time.sleep(5)
-                SelectPlants()
-                ReopenWindow(Tool)
-                ExecuteScript(4)
-                CloseWindow(Tool)
-                TopWindow(Game)
-            case 'Ctrl+0':
-                interactive_menu.return_to_menu = True
-                
-                time.sleep(1)
+def run_game():
+    LaunchGame()
+    SelectGameMode("生存模式")
+    SelectLevel()#自带等待加载
+    SelectPlants()
+    ReopenWindow(Tool)
+    ExecuteScript(4)
+    CloseWindow(Tool)
+    TopWindow(Game)
 
-                # 在一个新的线程中运行interactive_menu.main()
-                threading.Thread(target=interactive_menu.main).start()
+def wait_and_run():
+    if(CheckWindowIsOpen(Game) == False):
+        return
+    else:
+        TopWindow(Game)
+    time.sleep(5)
+    SelectPlants()
+    ReopenWindow(Tool)
+    ExecuteScript(4)
+    CloseWindow(Tool)
+    TopWindow(Game)
 
+def return_to_menu():
+    interactive_menu.return_to_menu = True
+    time.sleep(1)
+    threading.Thread(target=interactive_menu.main).start()
 
-    #持续等待键盘按键
-    def KeyboardWait(self):
-        print("已开启阻塞 脚本保持运行")
-        keyboard.wait()
+if __name__ == '__main__':
+    keyboard.add_hotkey('ctrl+1', run_game)
+    keyboard.add_hotkey('ctrl+2', wait_and_run)
+    keyboard.add_hotkey('ctrl+0', return_to_menu)
+    keyboard.wait()
