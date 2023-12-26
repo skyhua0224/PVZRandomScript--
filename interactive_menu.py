@@ -32,6 +32,16 @@ plant_dict = {
     "7": "自定义卡组"
 }
 
+# 添加一个全局变量
+global return_to_menu
+return_to_menu = False
+
+def KeyPressAction(self,key):
+    global return_to_menu
+    match key:
+        case 'Ctrl+0':
+            return_to_menu = True
+            interactive_menu.main()
 def print_title(title):
     title_panel = Panel.fit(title, border_style="cyan", padding=(0, 2))
     align_title = Align.center(title_panel)
@@ -49,6 +59,7 @@ def print_game_running_screen():
 
 def start_game(mode_input, plant_input):
     global isStart
+    global return_to_menu
     isStart = True
     console.clear()
     console.print(f"你选择的模式是：[bold cyan]{mode_dict[mode_input]}[/bold cyan]")
@@ -58,6 +69,9 @@ def start_game(mode_input, plant_input):
     with Progress() as progress:
         task = progress.add_task("[cyan]启动中...", total=5)
         for i in range(5, 0, -1):
+            if return_to_menu:
+                return_to_menu = False
+                return
             time.sleep(1)
             progress.update(task, advance=1)
     print_game_running_screen()
