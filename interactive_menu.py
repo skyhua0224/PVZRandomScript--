@@ -79,8 +79,12 @@ def start_game(mode_input, plant_input):
 
 
 def main():
+    global return_to_menu
     isStart = False
     while isStart == False:
+        if return_to_menu:
+            return_to_menu = False
+            continue
         console.clear()
         print_title("欢迎使用PVZRandomScript--！")
         print_options(["默认开始", "自定义游戏", "随机游戏", "游戏版本"])
