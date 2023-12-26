@@ -5,8 +5,8 @@ from rich.console import Console
 from rich.prompt import Prompt
 from rich.progress import Progress
 import time
-from keyboard_event import *
 from game_operations import *
+from keyboard_event import *
 
 console = Console()
 
@@ -36,12 +36,6 @@ plant_dict = {
 global return_to_menu
 return_to_menu = False
 
-def KeyPressAction(self,key):
-    global return_to_menu
-    match key:
-        case 'Ctrl+0':
-            return_to_menu = True
-            interactive_menu.main()
 def print_title(title):
     title_panel = Panel.fit(title, border_style="cyan", padding=(0, 2))
     align_title = Align.center(title_panel)
@@ -81,10 +75,7 @@ def start_game(mode_input, plant_input):
 def main():
     global return_to_menu
     isStart = False
-    while isStart == False:
-        if return_to_menu:
-            return_to_menu = False
-            continue
+    while isStart == False and return_to_menu == False:
         console.clear()
         print_title("欢迎使用PVZRandomScript--！")
         print_options(["默认开始", "自定义游戏", "随机游戏", "游戏版本"])
@@ -94,7 +85,7 @@ def main():
             mode_input = '1'  # 默认关卡
             plant_input = '1'  # 默认卡组
         elif user_input in ['2', '3']:
-            while True:
+            while True and return_to_menu == False:
                 console.clear()
                 if user_input == '2':
                     print_title("请选择模式：")
@@ -118,3 +109,4 @@ def main():
             break
 
         start_game(mode_input, plant_input)
+        #KeyboardEvent().KeyboardWait()

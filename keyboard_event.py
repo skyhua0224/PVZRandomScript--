@@ -2,7 +2,7 @@ import keyboard
 #自写脚本调用
 from game_operations import *
 import interactive_menu
-
+import threading
 class KeyboardEvent(): 
     def __init__(self):
         self.KeyPress()
@@ -39,7 +39,13 @@ class KeyboardEvent():
                 CloseWindow(Tool)
                 TopWindow(Game)
             case 'Ctrl+0':
-                interactive_menu.main()
+                interactive_menu.return_to_menu = True
+                
+                time.sleep(1)
+
+                # 在一个新的线程中运行interactive_menu.main()
+                threading.Thread(target=interactive_menu.main).start()
+
 
     #持续等待键盘按键
     def KeyboardWait(self):

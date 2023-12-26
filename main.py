@@ -1,6 +1,7 @@
 #自写脚本调用
 import interactive_menu
 from keyboard_event import *
+import threading
     
 def Init():
     print("""
@@ -8,7 +9,7 @@ def Init():
     'Ctrl+2' 应总选卡 有等待加载
     'Ctrl+3' 点了个重新开始4        
     """) 
-    KeyboardEvent()
-    interactive_menu.main()
-    KeyboardEvent().KeyboardWait()
+    keyboard_event = KeyboardEvent()
+    threading.Thread(target=interactive_menu.main).start()
+    keyboard_event.KeyboardWait()
 Init()
