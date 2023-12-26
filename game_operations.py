@@ -31,7 +31,7 @@ def SelectGameMode(gameMode):
             pyautogui.click(1220, 690, clicks=1, interval=0.0, button='left')#生存模式
     time.sleep(0.5)
 
-def SelectLevel():
+def SelectLevel(gameMode, level):
     pyautogui.click(400, 570, clicks=1, interval=0.0, button='left')#选择关卡
     time.sleep(0.5)
     #上局游戏残留时点击新游戏
@@ -40,7 +40,7 @@ def SelectLevel():
     #等待场景动画
     time.sleep(5)
 
-def SelectPlants():
+def SelectPlants(imitatorNum, regularcard, isDaytime):
     #TODO 修改前四个植物卡牌 从三发舍射手开始
     #模仿者
     pyautogui.click(1000, 900, clicks=1, interval=0.0, button='left')
@@ -64,10 +64,10 @@ def SelectPlants():
     #等待场景动画
     time.sleep(4.5)
 
-def WindowClick(object,x,y):#窗口的左上角(0,0)
+def WindowClick(object, x, y):#窗口的左上角(0,0)
     pyautogui.click(Tool.left + x, Tool.top + y, clicks=1, interval=0.0, button='left')
 
-def ExecuteScript(cycleCount):
+def ExecuteScript(imitatorNum):
     WindowClick(Tool,145,68)#点击阵型
     time.sleep(0.1)
     WindowClick(Tool,84,120)#开选择卡槽
@@ -79,7 +79,7 @@ def ExecuteScript(cycleCount):
     WindowClick(Tool,82,95)#第一卡槽
     time.sleep(0.1)
     #换模仿者 
-    while cycleCount:
+    while imitatorNum:
         WindowClick(Tool,465,122)#模仿者
         WindowClick(Tool,237,120)#选择植物
         #滚动植物界面
@@ -89,12 +89,22 @@ def ExecuteScript(cycleCount):
         pyautogui.click(237 + Tool.left, 241, clicks=1, interval=0.0, button='left')#选择植物(小喷菇)
         WindowClick(Tool,397,118)#换卡牌 确认
         time.sleep(0.01)
-        if cycleCount!=1:
+        if imitatorNum != 1:
             #下一卡槽
             WindowClick(Tool,84,120)
             WindowClick(Tool,83,147)
-        cycleCount-=1
+        imitatorNum -= 1
     #双击快速布阵 刷新游戏中cd
     WindowClick(Tool,102,161)
     time.sleep(0.2)
     WindowClick(Tool,102,161)
+
+def StartGame(mode_name,plant_name):
+    LaunchGame()
+    SelectGameMode(mode_name)
+    SelectLevel(None,None)#自带等待加载
+    SelectPlants(None,None,None)
+    ReopenWindow(Tool)
+    ExecuteScript(4)
+    CloseWindow(Tool)
+    TopWindow(Game)

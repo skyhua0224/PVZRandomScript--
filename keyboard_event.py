@@ -9,7 +9,7 @@ class KeyboardEvent():
 
     def KeyPress(self):
         #从data中获取快捷键
-        KeyPressActions = {'Ctrl+1','Ctrl+2','Ctrl+3','Ctrl+4','Ctrl+5','Ctrl+6','Ctrl+7','Ctrl+8','Ctrl+9'}
+        KeyPressActions = {'Ctrl+1','Ctrl+2','Ctrl+3','Ctrl+4','Ctrl+5','Ctrl+6','Ctrl+7','Ctrl+8','Ctrl+9', 'Ctrl+0'}
         for item in KeyPressActions:
             keyboard.add_hotkey(item, self.KeyPressAction, args=(item,))
     #案件对应效果
@@ -38,7 +38,7 @@ class KeyboardEvent():
                 ExecuteScript(4)
                 CloseWindow(Tool)
                 TopWindow(Game)
-            case 'Ctrl+3':
+            case 'Ctrl+0':
                 interactive_menu.main()
 
     #持续等待键盘按键
