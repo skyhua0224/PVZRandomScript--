@@ -34,4 +34,4 @@ if __name__ == '__main__':
     keyboard.add_hotkey('ctrl+1', run_game)
     keyboard.add_hotkey('ctrl+2', wait_and_run)
     keyboard.add_hotkey('ctrl+0', return_to_menu)
-    keyboard.wait()
+    threading.Thread(target=keyboard.wait).start()

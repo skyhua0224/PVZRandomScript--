@@ -10,5 +10,5 @@ def Init():
     'Ctrl+3' 点了个重新开始4        
     """) 
     threading.Thread(target=interactive_menu.main).start()
-    keyboard.wait()
+    threading.Thread(target=keyboard.wait).start()
 Init()
