@@ -1,6 +1,6 @@
 import time
-import win32gui
-import win32con
+#import win32gui
+#import win32con
 import subprocess
 import os
 from CommonData import *

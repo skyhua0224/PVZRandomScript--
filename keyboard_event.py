@@ -1,4 +1,4 @@
-import keyboard
+#import keyboard
 #自写脚本调用
 from game_operations import *
 import interactive_menu

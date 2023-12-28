@@ -1,10 +1,11 @@
 from pynput import keyboard
 from interactive_menu import *
+import threading
 
 # 定义热键触发的函数
 def on_activate_0():
     print('热键 Ctrl+0 被触发')
-    interactive_menu.main()
+    threading.Thread(target=interactive_menu.main).start()
     
 
 def on_activate_1():
